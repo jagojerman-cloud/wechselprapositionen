@@ -1,0 +1,44 @@
+```html id="4lf82m"
+<script>
+function checkAnswers() {
+
+  const inputs = document.querySelectorAll("input");
+
+  inputs.forEach(input => {
+
+    const userAnswer = input.value.trim().toLowerCase();
+    const correctAnswer = input.dataset.answer.toLowerCase();
+
+    // Alte Korrektur entfernen
+    const oldCorrection = input.parentNode.querySelector(".correction");
+    if (oldCorrection) {
+      oldCorrection.remove();
+    }
+
+    if (userAnswer === correctAnswer) {
+
+      input.classList.remove("wrong");
+      input.classList.add("correct");
+
+    } else {
+
+      input.classList.remove("correct");
+      input.classList.add("wrong");
+
+      // Richtige Antwort anzeigen
+      const correction = document.createElement("span");
+      correction.classList.add("correction");
+      correction.style.color = "green";
+      correction.style.fontWeight = "bold";
+      correction.style.marginLeft = "10px";
+
+      correction.innerHTML = "✔ Richtige Antwort: " + correctAnswer;
+
+      input.parentNode.appendChild(correction);
+    }
+
+  });
+
+}
+</script>
+```
